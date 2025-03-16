@@ -67,14 +67,4 @@ jobs:
         name: grype-vulnerability-report
         path: grype-report.json
 
-    - name: Upload Critical Vulnerability Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: critical-vulnerabilities
-        path: critical-vulnerabilities.json
 
-    - name: Upload High Vulnerability Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: high-vulnerabilities
-        path: high-vulnerabilities.json
