@@ -23,7 +23,7 @@ jobs:
 
     - name: Generate SBOM
       run: |
-        syft docker.io/jkkarthick/todo-app:v1.0 -o spdx-json > spdx.json
+        syft docker.io/jkkarthick/httpd:v1.0 -o spdx-json > spdx.json
 
     - name: Upload SBOM Artifact
       uses: actions/upload-artifact@v4
