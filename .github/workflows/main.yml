@@ -53,8 +53,28 @@ jobs:
       run: |
         grype sbom:spdx.json -o json > grype-report.json
 
+    - name: Extract Critical Vulnerabilities
+      run: |
+        jq '[.matches[] | select(.vulnerability.severity == "Critical") ]' grype-report.json > critical-vulnerabilities.json
+
+    - name: Extract High Vulnerabilities
+      run: |
+        jq '[.matches[] | select(.vulnerability.severity == "High") ]' grype-report.json > high-vulnerabilities.json
+
     - name: Upload Grype Vulnerability Report
       uses: actions/upload-artifact@v4
       with:
         name: grype-vulnerability-report
         path: grype-report.json
+
+    - name: Upload Critical Vulnerability Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: critical-vulnerabilities
+        path: critical-vulnerabilities.json
+
+    - name: Upload High Vulnerability Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: high-vulnerabilities
+        path: high-vulnerabilities.json
